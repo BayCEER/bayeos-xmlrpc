@@ -56,5 +56,17 @@ public interface IMessungHandler {
 	 * @throws XmlRpcException
 	 */
 	public String getTimeZone(Integer Id) throws XmlRpcException;
+	
+	
+	/**
+	 * 
+	 * refresh the rec_start and rec_end values of a series based on its time records 
+	 * @param Id series identifier
+	 * @return Boolean
+	 * @throws XmlRpcException
+	 * @since 1.9.3
+	 */
+	public Boolean refreshRecInterval(Integer id) throws XmlRpcException;
+	
 
 }
