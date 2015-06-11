@@ -23,7 +23,7 @@ public interface IPreferenceHandler {
     /**  
 	 *  Set preference value for user and application   
 	 * 
-	 * @param applicaton as Integer not null
+	 * @param applicaton 
 	 * @param key: not null
 	 * @param value: if value is not null then add or overwrite value for key else delete key  
 	 * @return Boolean
@@ -32,6 +32,18 @@ public interface IPreferenceHandler {
 	 * @since 1.9.3
 	 */
     public Boolean setPreference(String application,String key, String value) throws XmlRpcException;
+    
+    
+    /**
+     * Delete all key value pairs entries for application
+     * @param application
+     * @return Boolean 
+     * @throws XmlRpcException
+     * @since 1.9.5
+     */
+    public Boolean deletePreferences(String application) throws XmlRpcException;
+        
+    
  
 
 }
