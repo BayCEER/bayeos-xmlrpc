@@ -1,6 +1,10 @@
 package de.unibayreuth.bayceer.bayeos.client;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Properties;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
@@ -10,7 +14,7 @@ import org.apache.xmlrpc.XmlRpcException;
 public class Client {
 
 	private static Logger log = Logger.getLogger(Client.class);
-	private static final String clientVersion = "1.9.1";
+	private static String clientVersion = "unknown";
 
 	private String bayEOSVersion = "";
 	private XmlRpcClient xmlRpcClient = null;
@@ -21,9 +25,23 @@ public class Client {
 	private static Client client = null;
 	
 	private Client(){
-		// Singleton
+		readConfig();
 	}
 	
+	
+	
+	private void readConfig() {
+		Properties p = new Properties();
+		try {			
+			p.load(this.getClass().getClassLoader().getResourceAsStream("application.properties"));
+			clientVersion = p.getProperty("version");			
+		} catch (IOException e) {
+			log.error(e.getMessage());
+		}				
+	}
+
+
+
 	public static Client getInstance(){
 		if (client == null) client = new Client();
 		return client;				

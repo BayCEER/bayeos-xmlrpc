@@ -4,6 +4,11 @@ import java.util.Hashtable;
 
 import org.apache.xmlrpc.XmlRpcException;
 
+/**
+ * Manage application preferences per user as a hashmap (secured)
+ * @author oliver
+ *
+ */
 public interface IPreferenceHandler {
 	
 	/**  
@@ -23,11 +28,10 @@ public interface IPreferenceHandler {
     /**  
 	 *  Set preference value for user and application   
 	 * 
-	 * @param applicaton 
-	 * @param key: not null
-	 * @param value: if value is not null then add or overwrite value for key else delete key  
+	 * @param application Application name
+	 * @param key Key not null
+	 * @param value if value is not null then add or overwrite value for key else delete key  
 	 * @return Boolean
-	 *   
 	 * @throws XmlRpcException
 	 * @since 1.9.3
 	 */
@@ -36,7 +40,7 @@ public interface IPreferenceHandler {
     
     /**
      * Delete all key value pairs entries for application
-     * @param application
+     * @param application Application name
      * @return Boolean 
      * @throws XmlRpcException
      * @since 1.9.5

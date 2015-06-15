@@ -116,7 +116,7 @@ public interface IObjektHandler {
 	 * @param art art as string 
 	 * @param von
 	 * @param bis
-	 * @return
+	 * @return success
 	 * @throws XmlRpcException
 	 * @see de.unibayreuth.bayceer.bayeos.xmlrpc.handler.inf.IObjektArtHandler#getObjektArts()
 	 */

@@ -61,7 +61,7 @@ public interface IMessungHandler {
 	/**
 	 * 
 	 * refresh the rec_start and rec_end values of a series based on its time records 
-	 * @param Id series identifier
+	 * @param id series identifier
 	 * @return Boolean
 	 * @throws XmlRpcException
 	 * @since 1.9.3
