@@ -154,85 +154,8 @@ public interface IMassenTableHandler {
 	public Vector getRows(Integer id, Vector timeFilter, Vector statusFilter)
 			throws XmlRpcException;
 
-	/**
-	 * Import many measurements grouped by series identifier
-	 * 
-	 * @param values hashtable with series identifier as key and Array of Strings as values. A value is composed of sampling time, quality flag and measurement value in the following format: DD.MM.YYYY hh:mm:ss;##;####.###
-	 * <p>Sample XML Request:
-	 * <pre>
-	 * {@code
-	 * <?xml version="1.0"?>
-	 * <methodCall>
-	 * <methodName>MassenTableHandler.importById</methodName>
-	 * <params>
-	 *  <param>
-	 *  <value>
-	 *   <struct>
-	 *   	<member><name>17845</name>
-	 *   	<value><array><data>
-	 *   	<value>17.06.2002 11:10:00;00;12.0</value>
-	 *   	<value>01.03.2003 12:00:00;0;13766.7941930617</value>
-	 *   	<value>01.03.2003 12:05:00;7;5634.50514870746</value>
-	 *   	<value>01.03.2003 12:10:00;6;16467.3786470724</value>
-	 *   	</data></array></value>
-	 *   	</member>
-	 *    </struct>
-	 *   </value>
-	 *  </param>
-	 * </params>
-	 * </methodCall>
-	 * }
-	 * </pre>
-	 * @return success
-	 * @throws XmlRpcException
-	 * 
-	 */
-	public Boolean importById(Hashtable values) throws XmlRpcException;
+	
 
-	/**
-	 * Import many measurements grouped by time 
-	 * 
-	 * @param values hashtable with sampling time as as key and array of Strings as values, 
-	 * a key is a String value of sampling time formated by DD.MM.YYYY hh:mm:ss.<p>
-	 * a value is composed of series id, quality flag and measurement value separated by semicolon
-	 * 
-	 * <p>Sample XML Request:
-	 * <pre>
-	 * {@code
-	 * <?xml version="1.0"?>
-	 * <methodCall>
-	 * <methodName>MassenTableHandler.importByTime</methodName>
-	 * <params>
-	 *  <param><value><struct>
-	 *   <member><name>17.06.2002 11:10:00</name>
-	 *    <value><array><data>
-	 *     <value>14478;00;0.00</value>
-	 *     <value>14479;00;0.00</value>
-	 *     <value>14480;00;0.00</value>
-	 *     <value>2701;00;0.00</value>
-	 *     </data></array>
-	 *    </value>
-	 *   </member>
-	 *   <member><name>17.06.2002 11:20:00</name>
-	 *    <value><array><data>
-	 *     <value>14478;00;12.88</value>
-	 *     <value>14479;00;13.73</value>
-	 *     <value>14480;00;11.78</value>
-	 *     <value>14481;00;9.98</value>
-	 *     <value>2701;00;39.49</value>
-	 *    </data></array></value>
-	 *   </member>
-	 *  </struct></value></param>
-	 * </params>
-	 * </methodCall>
-	 * }
-	 * </pre>
-	 * 
-	 * 
-	 * @return success
-	 * @throws XmlRpcException
-	 */
-	public Boolean importByTime(Hashtable values) throws XmlRpcException;
 	
 	
 	/** 
@@ -261,21 +184,6 @@ public interface IMassenTableHandler {
      * @since 1.7
      **/
 	public Vector getMatrix(Vector ids,Vector timeFilter,Vector statusFilter, Boolean withStatus) throws XmlRpcException;
-	
-	
-	/** 
-     * Import a Vector of time value pairs into one series 
-     * @param  Id series id 
-     * @param  rows vector of Strings  
-	 * @param  shortCols format flag; true:short vector row format -> [timestamp;value] as [DD.MM.YYYY hh:mm:ss;%f]   
-	 * 						false:long vector row format -> [timestamp;value;status] as [DD.MM.YYYY hh:mm:ss;%f;%d]
-	 *  
-     * @return Boolean 
-     * 
-     *    
-     * 
-     **/
-	public Boolean importFlat(Integer Id, Vector rows, boolean shortCols) throws XmlRpcException;
 	
 	
 	
