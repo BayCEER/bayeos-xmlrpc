@@ -26,6 +26,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>		
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>	
+		<skipTests>true</skipTests>
 	</properties>
     
 	<dependencies>
@@ -39,7 +40,9 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
-		</dependency>	
+		</dependency>		
+	</dependencies>
+	
   <build>
   <resources>
     <resource>
