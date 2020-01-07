@@ -74,6 +74,20 @@ public interface IMassenTableHandler {
 	public Boolean addRow(Integer id, java.util.Date von, Double wert,
 			Integer status) throws XmlRpcException;
 
+	
+	
+	/** 
+     * Add or overwrite a series row 
+     * @param id series identifier
+     * @param von sampling time 
+     * @param wert measurement value 
+     * @param status quality tag of measurement value   
+     * @return success
+       
+     **/
+	
+	public Boolean upsertRow(Integer id, java.util.Date von, Double wert, Integer status) throws XmlRpcException ;
+	
 		
 	/**
 	 * Update one row of a series.  

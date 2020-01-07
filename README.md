@@ -7,6 +7,9 @@ Java library to communicate with a [BayEOS Server](https://github.com/BayCEER/ba
 
 ## History
 
+### Version 2.0.1, Jan 07, 2020
+- Added MassHandler.upsertRow to interface
+
 ### Version 2.0.0, July 19, 2018
 - JRE 8 compability 
 - New Client function client.getNode()
