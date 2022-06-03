@@ -10,7 +10,9 @@ import java.util.Hashtable;
 import java.util.Stack;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * A multithreaded, reusable XML-RPC server object. The name may be misleading 
@@ -30,7 +32,7 @@ public class XmlRpcServer
     private int workers;
     
     
-    protected final static Logger logger = Logger.getLogger("XmlRpcServer.class");
+    protected final static Logger logger = LoggerFactory.getLogger("XmlRpcServer.class");
 
     /**
      * Construct a new XML-RPC server. You have to register handlers

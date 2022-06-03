@@ -16,7 +16,8 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.AttributeList;
 import org.xml.sax.SAXException;
 
@@ -47,7 +48,7 @@ public class XmlRpcClient  implements XmlRpcHandler
     protected int workers = 0;
     protected int asyncWorkers = 0;
     
-    protected final static Logger logger = Logger.getLogger("XmlRpcClient.class");
+    protected final static Logger logger = LoggerFactory.getLogger("XmlRpcClient.class");
 	
     public static final int CONNECT_TIMEOUT = 60*1000;
 	public static final int READ_TIMEOUT = 60*1000;

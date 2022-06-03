@@ -3,15 +3,11 @@ package de.unibayreuth.bayceer.bayeos.client;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.xmlrpc.XmlRpcException;
 import junit.framework.TestCase;
 
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.xmlrpc.XmlRpcException;
-
 public class ConnectTest  extends TestCase{
-	private static Logger log; 
+	 
 	
 	String url;
 	Properties p;
@@ -19,15 +15,13 @@ public class ConnectTest  extends TestCase{
 	String userPassword;
 	
 	public void setUp() throws IOException{
-		BasicConfigurator.configure();
-		log = Logger.getRootLogger();
-		log.setLevel(Level.DEBUG);
+		
 		
 		p = new Properties();		
 		p.load(getClass().getResourceAsStream("/test.properties"));
 													
 		url = p.getProperty("bayeos.url");
-		log.debug("URL:" + url);		
+		System.out.println("URL:" + url);		
 		userName = p.getProperty("bayeos.user.name");	
 		userPassword = p.getProperty("bayeos.user.password");		
 	}
@@ -36,7 +30,6 @@ public class ConnectTest  extends TestCase{
 	
 	
 	public void tearDown() throws XmlRpcException {							
-		BasicConfigurator.resetConfiguration();
 	}
 	
 	public void testWrongUser(){		
@@ -45,7 +38,7 @@ public class ConnectTest  extends TestCase{
 			c.connect(url,"asdf","false");
 			fail();
 		} catch (XmlRpcException e) {
-			log.error(e.getMessage());
+			System.out.println(e.getMessage());
 		} 
 		
 	}
@@ -57,7 +50,7 @@ public class ConnectTest  extends TestCase{
 			c.connect(url,userName,"wrong");
 			fail();
 		} catch (XmlRpcException e) {
-			log.error(e.getMessage());
+			System.out.println(e.getMessage());
 		} 
 		
 	}
@@ -69,7 +62,7 @@ public class ConnectTest  extends TestCase{
 			c.connect(url,userName,"");
 			fail();
 		} catch (XmlRpcException e) {
-			log.error(e.getMessage());
+			System.out.println(e.getMessage());
 		} 
 		
 	}

@@ -4,14 +4,12 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
 import org.apache.xmlrpc.XmlRpcException;
 
 import de.unibayreuth.bayceer.bayeos.client.Client;
 
 public class ObjektNodeModel
 {
-  protected static final Logger logger = Logger.getLogger(ObjektNodeModel.class);
   
   public ObjektNode getRoot(ObjektArt paramObjektArt)
     throws XmlRpcException, IOException

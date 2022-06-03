@@ -6,16 +6,17 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
 import org.apache.xmlrpc.XmlRpcClient;
 import org.apache.xmlrpc.XmlRpcException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.unibayreuth.bayceer.bayeos.objekt.ObjektArt;
 import de.unibayreuth.bayceer.bayeos.objekt.ObjektNode;
 
 public class Client {
 
-	private static Logger log = Logger.getLogger(Client.class);
+	private static Logger log = LoggerFactory.getLogger(Client.class);
 	
 	private XmlRpcClient xmlRpcClient = null;
 

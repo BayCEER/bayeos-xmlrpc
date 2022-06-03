@@ -7,7 +7,9 @@ import java.util.Hashtable;
 import java.util.Stack;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /*
  * OctetServer.java
@@ -21,7 +23,7 @@ import org.apache.log4j.Logger;
  */
 public class OctetServer {
     
-    final static Logger logger = Logger.getLogger(OctetServer.class); 
+    protected final static Logger logger = LoggerFactory.getLogger(OctetServer.class); 
     
     private Hashtable handlers;
     private Stack pool;
@@ -97,6 +99,7 @@ public class OctetServer {
     {
         private Vector inParams;
         private XmlWriter writer;
+        protected Logger logger = LoggerFactory.getLogger(OctetWorker.class); 
 
         /**
          * Creates a new instance.

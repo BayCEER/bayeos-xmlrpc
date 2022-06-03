@@ -6,7 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Invoker implements XmlRpcHandler
 
@@ -23,7 +24,7 @@ public class Invoker implements XmlRpcHandler
 
 	private Class targetClass;
     
-    protected final static Logger logger = Logger.getLogger("Invoker.class");
+    protected final static Logger logger = LoggerFactory.getLogger("Invoker.class");
     
 
     public Invoker(Object target)

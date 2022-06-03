@@ -20,7 +20,8 @@ import java.util.Vector;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.AttributeList;
 import org.xml.sax.HandlerBase;
 import org.xml.sax.InputSource;
@@ -61,7 +62,7 @@ public abstract class XmlRpc extends HandlerBase
     
     
     
-    protected final static Logger logger = Logger.getLogger("XmlRpc.class");
+    protected final static Logger logger = LoggerFactory.getLogger("XmlRpc.class");
 
     String methodName;
 

@@ -1,12 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>    
-  <groupId>de.unibayreuth.bayceer.bayeos</groupId>
-  <artifactId>bayeos-xmlrpc</artifactId>
-  <packaging>jar</packaging>
-  <version>2.0.1</version>
-  <name>bayeos-xmlrpc</name>
-	
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.unibayreuth.bayceer.bayeos</groupId>
+	<artifactId>bayeos-xmlrpc</artifactId>
+	<packaging>jar</packaging>
+	<version>2.0.2</version>
+	<name>bayeos-xmlrpc</name>
+
 	<licenses>
 		<license>
 			<name>GNU Public License v2.0</name>
@@ -19,16 +18,18 @@
 		<name>University of Bayreuth - BayCEER</name>
 		<url>http://www.bayceer.uni-bayreuth.de</url>
 	</organization>
-	
-	
+
+
 	<properties>
+		<java.version>11</java.version>
+		<release>bullseye</release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>		
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>	
-		<skipTests>true</skipTests>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<build.year>${maven.build.timestamp}</build.year>
+		<maven.build.timestamp.format>yyyy</maven.build.timestamp.format>
+		<maven.compiler.release>11</maven.compiler.release>
 	</properties>
-    
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -37,34 +38,51 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>		
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.36</version>
+		</dependency>
 	</dependencies>
-	
-  <build>
-  <plugins>
-  		<!--  mvn javadoc:javadoc -->
-        <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.1</version>
-        
-        <configuration>
-        	<reportOutputDirectory>./docs</reportOutputDirectory>
-         	<additionalparam>-Xdoclint:none</additionalparam>
-         	<additionalOptions>-Xdoclint:none</additionalOptions>
-        	 	        	         
-        </configuration>
-      </plugin>
-  </plugins>
-  <resources>
-    <resource>
-        <directory>src/main/resources/config</directory>
-        <filtering>true</filtering>
-    </resource>
-	</resources>
-</build>
+
+	<profiles>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<skipTests>true</skipTests>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<!-- mvn javadoc:javadoc -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.1</version>
+
+				<configuration>
+					<reportOutputDirectory>./docs</reportOutputDirectory>
+					<additionalOptions>-Xdoclint:none</additionalOptions>
+
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version>
+			</plugin>
+
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources/config</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
 
 </project>

@@ -4,13 +4,11 @@ import java.nio.ByteBuffer;
 import java.util.Date;
 import java.util.Random;
 
-import org.apache.log4j.Logger;
 import org.junit.Test;
 
 public class MassenTableHandlerTest extends AbstractClientTest{
 
 	
-	Logger log = Logger.getLogger(MassenTableHandlerTest.class);
 	
 	@Test
 	public void testAddByteRowsVolume() throws Exception {		
@@ -21,7 +19,7 @@ public class MassenTableHandlerTest extends AbstractClientTest{
 		Long start = new Date().getTime();		
 		ByteBuffer b = ByteBuffer.allocate(1000*16);
 		for(int c=0;c<10*1000;c++){
-			log.info("c:"+ c);
+			System.out.println("c:"+ c);
 			for(int i=0;i<1000;i++){
 				b.putInt(id);			
 				b.putLong(start);
