@@ -20,10 +20,10 @@ public class ConnectTest  extends TestCase{
 		p = new Properties();		
 		p.load(getClass().getResourceAsStream("/test.properties"));
 													
-		url = p.getProperty("bayeos.url");
+		url = p.getProperty("url");
 		System.out.println("URL:" + url);		
-		userName = p.getProperty("bayeos.user.name");	
-		userPassword = p.getProperty("bayeos.user.password");		
+		userName = p.getProperty("user");	
+		userPassword = p.getProperty("password");		
 	}
 	
 	

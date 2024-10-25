@@ -22,9 +22,9 @@ public abstract class AbstractClientTest extends TestCase {
 	public void setUp() throws XmlRpcException, IOException {
 
 		p.load(getClass().getResourceAsStream("/test.properties"));
-		String url = p.getProperty("bayeos.url");
+		String url = p.getProperty("url");
 		cli = Client.getInstance();
-		cli.connect(url, p.getProperty("bayeos.user.name"), p.getProperty("bayeos.user.password"));
+		cli.connect(url, p.getProperty("user"), p.getProperty("password"));
 	}
 
 	public void tearDown() throws XmlRpcException {

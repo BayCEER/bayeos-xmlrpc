@@ -7,6 +7,9 @@ Java library to communicate with a [BayEOS Server](https://github.com/BayCEER/ba
 
 ## History
 
+### Version 2.1.0, Oct 22, 2024
+- Added JWT Token sign in 
+
 ### Version 2.0.1, Jan 07, 2020
 - Added MassHandler.upsertRow to interface
 
