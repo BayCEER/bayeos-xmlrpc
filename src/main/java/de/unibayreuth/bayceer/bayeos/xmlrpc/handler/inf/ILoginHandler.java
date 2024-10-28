@@ -15,68 +15,80 @@ import java.util.Vector;
 import org.apache.xmlrpc.XmlRpcException;
 
 /**
- * Session handler  (unsecured)
+ * Session handler (unsecured)
  * 
  * @author oliver
  *
  */
 public interface ILoginHandler {
 
-	/** Login user and return information for http authentication header.
+	/**
+	 * Login user and return information for http authentication header.
 	 * <p>
-	 * The returned sessionId and userId is used for authentication by secured handlers. 
-	 * To access a secured handler the http request needs an authentification header field name "Authentication".
-	 * The field value must be a colon separated String of session id and user id.
+	 * The returned sessionId and userId is used for authentication by secured
+	 * handlers. To access a secured handler the http request needs an
+	 * authentification header field name "Authentication". The field value must be
+	 * a colon separated String of session id and user id.
 	 * <p>
 	 * Example value:
-	 * <p> 
-	 * String( Base64.encode( (SessionId.toString() + ':' + UserId.toString() ).getBytes() )).trim();
-	 *  
-	 * @param Login Username 
-	 * @param PassWord Password 
+	 * <p>
+	 * String( Base64.encode( (SessionId.toString() + ':' + UserId.toString()
+	 * ).getBytes() )).trim();
 	 * 
-	 * @return Vector<Integer> 
-	 * <ol>
-	 * <li>SessionId as Integer</li>
-	 * <li>UserId as Integer</li>
-	 * </ol> 
-	 *  
+	 * @param Login    Username
+	 * @param PassWord Password
+	 * 
+	 * @return Vector<Integer>
+	 *         <ol>
+	 *         <li>SessionId as Integer</li>
+	 *         <li>UserId as Integer</li>
+	 *         </ol>
+	 * 
 	 * @throws XmlRpcException
 	 * @see ILogOffHandler
 	 * 
 	 * 
-	 *  
-	 *    
+	 * 
+	 * 
 	 */
-	public Vector createSession(String Login, String PassWord)
-			throws XmlRpcException;
-	
-	
-	/** Login user by token and return information for http authentication header.
+	public Vector createSession(String Login, String PassWord) throws XmlRpcException;
+
+	/**
+	 * Login user by token and return information for http authentication header.
 	 * <p>
-	 * The returned sessionId and userId is used for authentication by secured handlers. 
-	 * To access a secured handler the http request needs an authentification header field name "Authentication".
-	 * The field value must be a colon separated String of session id and user id.
+	 * The returned sessionId and userId is used for authentication by secured
+	 * handlers. To access a secured handler the http request needs an
+	 * authentification header field name "Authentication". The field value must be
+	 * a colon separated String of session id and user id.
 	 * <p>
 	 * Example value:
-	 * <p> 
-	 * String( Base64.encode( (SessionId.toString() + ':' + UserId.toString() ).getBytes() )).trim();
-	 *  
-	 * @param token JWT Token as String  
+	 * <p>
+	 * String( Base64.encode( (SessionId.toString() + ':' + UserId.toString()
+	 * ).getBytes() )).trim();
 	 * 
-	 * @return Vector<Integer> 
-	 * <ol>
-	 * <li>SessionId as Integer</li>
-	 * <li>UserId as Integer</li>
-	 * </ol> 
-	 *  
+	 * @param token JWT Token as String
+	 * 
+	 * @return Vector<Integer>
+	 *         <ol>
+	 *         <li>SessionId as Integer</li>
+	 *         <li>UserId as Integer</li>
+	 *         </ol>
+	 * 
 	 * @throws XmlRpcException
 	 * @see ILogOffHandler
 	 * @since 2.1.0
-	 *  
-	 *    
+	 * 
+	 * 
 	 */
 	public Vector createSessionByToken(String token) throws XmlRpcException;
-	
 
+	/**
+	 * Login by name and password 
+	 * @param Login Username
+	 * @param Password Password
+	 * @return user.id 
+	 * @throws XmlRpcException
+	 * @since 2.1.0
+	 */
+	public Integer authenticate(String login, String passWord) throws XmlRpcException;
 }

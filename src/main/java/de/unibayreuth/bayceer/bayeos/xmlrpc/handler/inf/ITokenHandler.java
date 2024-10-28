@@ -12,8 +12,12 @@ import org.apache.xmlrpc.XmlRpcException;
  */
 public interface ITokenHandler {
 	
-	/*
-	 * Returns a JWS (with key signed JWT)
+	/**
+	 * Create a new JWS Token
+	 *  
+	 * @param userName Username
+	 * @param passWord Password
+	 * @return JWS token(with key signed JWT)
 	 */
-	public String createLoginToken() throws XmlRpcException ;
+	public String createLoginToken(String userName, String passWord) throws XmlRpcException ;
 }
