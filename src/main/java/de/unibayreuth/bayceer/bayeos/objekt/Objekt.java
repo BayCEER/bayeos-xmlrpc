@@ -351,7 +351,7 @@ public class Objekt  {
     
     /**
      * Setter for property mrec_start.
-     * @param mrec_start New value of property mrec_start.
+     * @param rec_start New value of property rec_start.
      */
     public void setRec_start(java.util.Date rec_start) {
         this.rec_start = rec_start;
@@ -367,7 +367,7 @@ public class Objekt  {
     
     /**
      * Setter for property mrec_end.
-     * @param mrec_end New value of property mrec_end.
+     * @param rec_end New value of property rec_end.
      */
     public void setRec_end(java.util.Date rec_end) {
         this.rec_end = rec_end;

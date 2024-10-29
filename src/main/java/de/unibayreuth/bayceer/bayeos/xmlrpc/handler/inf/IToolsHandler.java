@@ -33,7 +33,7 @@ public interface IToolsHandler {
 	
 	/**
 	 * @param id series identifier
-	 * @param art objektArt <'messung_massendaten'|'messung_labordaten'>
+	 * @param art objektArt &lt;'messung_massendaten'|'messung_labordaten'&gt;
 	 * @param vonDate start of sampling
 	 * @param bisDate end of sampling 
 	 * @param statusId flag of status 

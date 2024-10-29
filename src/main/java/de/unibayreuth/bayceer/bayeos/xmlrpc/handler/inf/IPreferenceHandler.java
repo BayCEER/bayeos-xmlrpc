@@ -16,7 +16,7 @@ public interface IPreferenceHandler {
 	 * 
 	 *   
 	 * @param application as Integer 
-	 * @return Hashtable<String,String>   	 						 
+	 * @return Hashtable&lt;String,String&gt;   	 						 
 	 *   
 	 * @throws XmlRpcException
 	 * @since 1.9.3

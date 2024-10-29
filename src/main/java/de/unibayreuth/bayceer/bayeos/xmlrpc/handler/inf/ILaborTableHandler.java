@@ -47,7 +47,7 @@ public interface ILaborTableHandler {
 
 	/**
 	 * @param id
-	 * @param bisDates Vector\<Date\>
+	 * @param bisDates Vector<Date>
 	 * @return success
 	 * @throws XmlRpcException
 	 */

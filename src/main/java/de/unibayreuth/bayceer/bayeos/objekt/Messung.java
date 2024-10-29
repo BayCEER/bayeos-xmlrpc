@@ -110,7 +110,7 @@ public class Messung extends Objekt  {
     
     /**
      * Setter for property Id_Intervaltyp.
-     * @param Id_Intervaltyp New value of property Id_Intervaltyp.
+     * @param id New value of property intervalTypId.
      */
     public void setIntervalTypId(java.lang.Integer id) {
         this.intervalTypId = id;

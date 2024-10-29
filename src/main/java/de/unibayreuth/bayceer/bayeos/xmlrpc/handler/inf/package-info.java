@@ -3,8 +3,8 @@
  *   
  * All handler interfaces are defined by this package. There are secured and unsecured handlers.
  * Secured handler use http authentication.
- * The handler name can be calculated by the interface name omitting the first character.</p>
- * e.g. ILoginHandler -> LoginHandler
+ * The handler name can be calculated by the interface name omitting the first character.
+ * e.g. ILoginHandler -&gt; LoginHandler
  * 
  * @author Oliver Archner
  * @since 1.6.5

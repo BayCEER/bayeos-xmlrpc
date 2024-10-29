@@ -84,8 +84,8 @@ public interface ILoginHandler {
 
 	/**
 	 * Login by name and password 
-	 * @param Login Username
-	 * @param Password Password
+	 * @param login Username
+	 * @param passWord Password
 	 * @return user.id 
 	 * @throws XmlRpcException
 	 * @since 2.1.0
