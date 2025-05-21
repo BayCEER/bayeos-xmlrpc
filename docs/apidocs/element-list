@@ -1,0 +1,7 @@
+de.unibayreuth.bayceer.bayeos.client
+de.unibayreuth.bayceer.bayeos.objekt
+de.unibayreuth.bayceer.bayeos.xmlrpc.filter
+de.unibayreuth.bayceer.bayeos.xmlrpc.formats
+de.unibayreuth.bayceer.bayeos.xmlrpc.handler.inf
+de.unibayreuth.bayceer.bayeos.xmlrpc.types
+org.apache.xmlrpc
