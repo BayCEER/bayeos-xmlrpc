@@ -46,9 +46,7 @@ public class ObjektFactory  {
         } else if (objektArt.equals(ObjektArt.MESS_GERAET)) {
             return new Mess_Geraet(row);
         } else if (objektArt.equals(ObjektArt.MESS_EINBAU)) {
-            return new Mess_Einbau(row);
-        } else if (objektArt.equals(ObjektArt.MESS_ORT)) {
-            return new Mess_Ort(row);
+            return new Mess_Einbau(row);        
         } else if (objektArt.equals(ObjektArt.MESS_ZIEL)) {
             return new Mess_Ziel(row);
         } else if (objektArt.equals(ObjektArt.MESS_EINHEIT)) {

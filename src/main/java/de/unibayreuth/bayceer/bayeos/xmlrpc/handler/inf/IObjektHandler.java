@@ -32,6 +32,21 @@ public interface IObjektHandler {
 	public Vector getObjekt(Integer Id, String objektArt)
 			throws XmlRpcException;
 
+	
+	/**
+	 * Read many objekt entries by id
+	 * @param ids vector of objekt id
+	 * @param objektArt 
+	 * @return vector of attribute values for each objekt as vector 
+	 * @throws XmlRpcException
+	 * @see de.unibayreuth.bayceer.bayeos.xmlrpc.handler.inf.IObjektArtHandler#getObjektArts()
+	 * @since 2.2.0
+	 */
+	public Vector getObjekte(Vector<Integer> ids, String objektArt)
+			throws XmlRpcException;
+
+	
+	
 	/**
 	 * Create a reference from one object onto another object
 	 * @param vonObjId

@@ -79,18 +79,7 @@ public interface ILookUpTableHandler {
 	 */
 	public Vector getAgrFunktionen() throws XmlRpcException;
 	
-	/**
-	 @return Coordinate Reference Systems as Vector<p>
-	 * 			<ol>
-	 * 			<li>id as Integer</li>
-	 * 			<li>short name as String</li>		
-	 * 			<li>EPSG id as Integer</li>
-	 * 			</ol>
-	 * @throws XmlRpcException
-	 */
-	public Vector getCRS() throws XmlRpcException;
-	
-	
+		
 	/**
 	 * @return TimeZones as Vector<p>
 	 * 			<ol>

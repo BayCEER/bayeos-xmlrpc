@@ -18,6 +18,8 @@ package de.unibayreuth.bayceer.bayeos.objekt;
 
 import java.util.Vector;
 
+import de.unibayreuth.bayceer.bayeos.client.object.ArrayElement;
+
 /**
  *
  * @author  oliver
@@ -29,6 +31,9 @@ public class Messung extends Objekt  {
     private Integer aufloesung;     
     private Integer intervalTypId;
     private Integer timeZoneId;
+    private Double lat;
+	private Double lon;
+    private Double alt;
     
     /** Creates a new instance of Messung */
     public Messung(final Vector v) {
@@ -38,6 +43,9 @@ public class Messung extends Objekt  {
         this.setAufloesung((Integer)v.elementAt(super.INDEX_COUNT + 2));        
         this.setIntervalTypId((Integer)v.elementAt(super.INDEX_COUNT + 3));
         this.setTimeZoneId((Integer)v.elementAt(super.INDEX_COUNT + 4));
+        this.setLat((Double)v.elementAt(super.INDEX_COUNT + 5));
+        this.setLon((Double)v.elementAt(super.INDEX_COUNT + 6));
+        this.setAlt((Double)v.elementAt(super.INDEX_COUNT + 7));
         
     }
     
@@ -115,5 +123,29 @@ public class Messung extends Objekt  {
     public void setIntervalTypId(java.lang.Integer id) {
         this.intervalTypId = id;
     }
+
+	public Double getLat() {
+		return lat;
+	}
+
+	public void setLat(Double lat) {
+		this.lat = lat;
+	}
+
+	public Double getLon() {
+		return lon;
+	}
+
+	public void setLon(Double lon) {
+		this.lon = lon;
+	}
+
+	public Double getAlt() {
+		return alt;
+	}
+
+	public void setAlt(Double alt) {
+		this.alt = alt;
+	}
     
 }

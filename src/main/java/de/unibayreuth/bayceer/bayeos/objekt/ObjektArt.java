@@ -25,7 +25,7 @@ public class ObjektArt {
 	private static final String KEY_MESSUNG_MASSENDATEN = "messung_massendaten";
 	private static final String KEY_MESSUNG_ORDNER = "messung_ordner";
 	private static final String KEY_MESS_ZIEL = "mess_ziel";
-	private static final String KEY_MESS_ORT = "mess_ort";
+	
 	private static final String KEY_MESS_KOMPARTIMENT = "mess_kompartiment";
 	private static final String KEY_MESS_GERAET = "mess_geraet";
 	private static final String KEY_GRUPPE = "gruppe";
@@ -39,7 +39,7 @@ public class ObjektArt {
     public static final ObjektArt GRUPPE = new ObjektArt(KEY_GRUPPE);
     public static final ObjektArt MESS_GERAET = new ObjektArt(KEY_MESS_GERAET);
     public static final ObjektArt MESS_KOMPARTIMENT = new ObjektArt(KEY_MESS_KOMPARTIMENT);
-    public static final ObjektArt MESS_ORT = new ObjektArt(KEY_MESS_ORT);
+    
     public static final ObjektArt MESS_ZIEL = new ObjektArt(KEY_MESS_ZIEL);
     public static final ObjektArt MESSUNG_ORDNER  = new ObjektArt(KEY_MESSUNG_ORDNER);
     public static final ObjektArt MESSUNG_MASSENDATEN = new ObjektArt(KEY_MESSUNG_MASSENDATEN);
@@ -89,9 +89,7 @@ public class ObjektArt {
         } else if (art.equalsIgnoreCase(KEY_GRUPPE)) {
             return GRUPPE;
         } else if (art.equalsIgnoreCase(KEY_MESS_KOMPARTIMENT)) {
-             return MESS_KOMPARTIMENT;
-        }else if (art.equalsIgnoreCase(KEY_MESS_ORT)) {
-             return MESS_ORT;
+             return MESS_KOMPARTIMENT;       
         }else if (art.equalsIgnoreCase(KEY_MESS_ZIEL)) {
              return MESS_ZIEL;
         }else if (art.equalsIgnoreCase(KEY_MESSUNG)) {
