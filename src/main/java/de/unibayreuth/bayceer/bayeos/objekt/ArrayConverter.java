@@ -1,4 +1,4 @@
-package de.unibayreuth.bayceer.bayeos.client.object;
+package de.unibayreuth.bayceer.bayeos.objekt;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -11,13 +11,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ObjectConverter {
+public class ArrayConverter {
+	
+	public static <T extends Object> T toClass(Class<T> clazz, Object[] o) throws ArraySerializationException{		
+		return clazz.cast(toObject(clazz, o));	
+	}
 
 	@SuppressWarnings("unchecked")
 	public static Object toObject(@SuppressWarnings("rawtypes") Class clazz, Object[] o) throws ArraySerializationException {
 		if (!clazz.isAnnotationPresent(ArraySerializable.class)) {
 			throw new ArraySerializationException(
 					"The class " + clazz.getSimpleName() + " is not annotated with ArraySerializable");
+		}
+		
+		if (o == null) {
+			return null;
 		}
 		List<Field> fields = getAllFields(clazz);
 		try {
@@ -39,6 +47,10 @@ public class ObjectConverter {
 	}
 
 	public static Object[] toArray(Object o) throws ArraySerializationException {
+		
+			if (o==null) {
+				return null;
+			}
 		
 			Class<?> clazz = o.getClass();
 			if (!clazz.isAnnotationPresent(ArraySerializable.class)) {
@@ -64,7 +76,7 @@ public class ObjectConverter {
 				}
 			}
 			Object[] out = new Object[nmax + 1];
-			for (int i = 0; i < nmax; i++) {
+			for (int i = 0; i <= nmax; i++) {
 				out[i] = ol.get(i);
 			}
 			return out;

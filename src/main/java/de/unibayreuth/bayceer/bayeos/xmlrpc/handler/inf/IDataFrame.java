@@ -9,6 +9,7 @@ import org.apache.xmlrpc.XmlRpcException;
  *  
  *  @author oliver
  *  @since 1.9.0
+ *  @deprecated
  *  
  */
 public interface IDataFrame {	

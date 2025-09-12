@@ -1,6 +1,6 @@
-package de.unibayreuth.bayceer.bayeos.client.object;
+package de.unibayreuth.bayceer.bayeos.objekt;
 
-
+import java.util.Vector;
 
 @ArraySerializable
 public class MessungOrdner extends Objekt {
@@ -12,7 +12,7 @@ public class MessungOrdner extends Objekt {
 		@ArrayElement(22)
 		protected Integer aufloesung;
 		@ArrayElement(23)
-		protected Integer intervalTypId;
+		protected Integer intervalTypId = 2; // End
 		@ArrayElement(24)
 		protected Integer timeZoneId;
 		@ArrayElement(25)
@@ -26,7 +26,22 @@ public class MessungOrdner extends Objekt {
 	    public MessungOrdner() {
 			super();
 		}
-			 
+	    
+	    @Override
+	    public Vector updateVector() {	    	
+	    	Vector v = new Vector();
+	    	v.add(bezeichnung);
+	    	v.add(beschreibung);
+	    	v.add(aufloesung);
+	    	v.add(plan_start);
+	    	v.add(plan_end);
+	    	v.add(intervalTypId);
+	    	v.add(timeZoneId);
+	    	v.add(lat);
+	    	v.add(lon);
+	    	v.add(alt);
+	    	return v;	    
+	    }			 	
 
 		public String getBezeichnung() {
 			return bezeichnung;
@@ -91,7 +106,11 @@ public class MessungOrdner extends Objekt {
 		public void setAlt(Double alt) {
 			this.alt = alt;
 		}
+
 		
+
+
+	
 	    
 
 	

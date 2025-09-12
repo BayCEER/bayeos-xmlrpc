@@ -267,5 +267,55 @@ public interface ITreeHandler {
 	 */
 	public java.util.Vector findNode(java.lang.String name)
 			throws XmlRpcException;
+	
+	/**
+	 * 
+	 * Get all children of a node including spatial (lat,lon,alt) properties. Location information is treated hierarchically and passed to
+	 * child nodes. Parent location can be overwritten by child. 
+	 *   
+	 * @param id the parent node id to query 
+	 * @param antFilter as String
+	 * @param artFilter as String
+	 * <p>Allows searching the tree with ANT-like wildcard syntax:</p>
+	 * <ul>
+	 * 	<li>* denotes all characters but not the directory separator</li>
+	 *  <li>** denotes all characters including the directory separator</li>
+	 *  </ul>
+	 * @param maxDepth as int -1==unlimited 
+	 * @param activeFilter filter to elimate inactive nodes. A node is inactive the current date
+	 * is not between node.plan_start and node.plan_end
+	 * @param missingInterval postgresql interval as String 
+	 * @param timeFilter vector of values 
+	 * <ol>
+	 *    <li>start as Date</li>
+	 *    <li>end as Date</li>
+	 *  </ol> 
+	 * 
+	 * @return values as Vector with the following entries
+	 * <ol>
+	 * 	<li>id integer</li>
+	 *  <li>id_super integer</li>
+	 *  <li>id_art integer</li>
+	 *  <li>plan_start timestamp</li>
+	 *  <li>plan_end timestamp</li>
+	 *  <li>rec_start timestamp</li>
+	 *  <li>rec_end timestamp</li>
+	 *  <li>name text</li>
+	 *  <li>path text</li>
+	 *  <li>art text</li>
+	 *  <li>active boolen</li>
+	 *  <li>missing boolean</li>
+	 *  <li>lon</li>
+	 *  <li>lat</li>
+	 *  <li>alt</li>
+	 * </ol>
+	 * 
+	 * 
+	 * @return objekt node attributes including location
+	 * @throws XmlRpcException
+	 */
+	public java.util.Vector getObjektTreeWithLocation(Integer id, String antFilter, String artFilter, Integer maxDepth,
+			Boolean activeFilter, String missingInterval, Vector timeFilter) throws XmlRpcException;
+	
 
 }

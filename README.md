@@ -7,8 +7,9 @@ Java library to communicate with a [BayEOS Server](https://github.com/BayCEER/ba
 
 ## History
 
-### Version 2.2.0, May 22, 2025
+### Version 2.2.0, Sept 22, 2025
 - New properties messungen.{lat,lon,alt} 
+- New method: TreeHandler.getObjektTreeWithLocation
 
 ### Version 2.1.0, Oct 22, 2024
 - Added JWT Token sign in 

@@ -98,7 +98,7 @@ public interface IObjektHandler {
 	public Vector getInheritedReferences(Integer obj_id) throws XmlRpcException;
 
 	/**
-	 * Get all direct references off one objekt 
+	 * Get all direct references of one objekt 
 	 * @param obj_id
 	 * @return Vector of Attributes 
 	 * 		<ol>

@@ -1,4 +1,4 @@
-package de.unibayreuth.bayceer.bayeos.client.object;
+package de.unibayreuth.bayceer.bayeos.objekt;
 
 public class ArraySerializationException extends Exception {
 

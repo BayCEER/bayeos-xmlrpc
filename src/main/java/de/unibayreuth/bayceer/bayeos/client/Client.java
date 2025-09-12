@@ -11,13 +11,17 @@ import org.apache.xmlrpc.XmlRpcException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.unibayreuth.bayceer.bayeos.objekt.ObjektArt;
-import de.unibayreuth.bayceer.bayeos.objekt.ObjektNode;
+import de.unibayreuth.bayceer.bayeos.objekt.ArraySerializationException;
+import de.unibayreuth.bayceer.bayeos.objekt.Art;
+import de.unibayreuth.bayceer.bayeos.objekt.MessungOrdner;
+import de.unibayreuth.bayceer.bayeos.objekt.Node;
+import de.unibayreuth.bayceer.bayeos.objekt.Objekt;
+import de.unibayreuth.bayceer.bayeos.objekt.ArrayConverter;
 
 public class Client {
 
 	private static Logger log = LoggerFactory.getLogger(Client.class);
-	
+
 	private XmlRpcClient xmlRpcClient = null;
 
 	private static Client client = null;
@@ -52,7 +56,7 @@ public class Client {
 		} catch (MalformedURLException e) {
 			throw new XmlRpcException(0, "Malformed url.");
 		}
-		xmlRpcClient.connect(userName, passWord);		
+		xmlRpcClient.connect(userName, passWord);
 	}
 
 	public boolean isConnected() {
@@ -68,62 +72,89 @@ public class Client {
 		}
 	}
 
-
 	public void close() throws XmlRpcException {
 		if (xmlRpcClient != null) {
 			xmlRpcClient.close();
 		}
 	}
-	
-	public ObjektNode getNode(Integer id) throws XmlRpcException  {
+
+	public Node getNode(Integer id) throws XmlRpcException {
 		Vector att = (Vector) xmlRpcClient.execute("TreeHandler.getNode", id);
 		if (att != null) {
-			return new ObjektNode(att);
+			try {
+				return (Node) ArrayConverter.toObject(Node.class, att.toArray());
+			} catch (ArraySerializationException e) {
+				throw new XmlRpcException(0, e.getMessage());
+			}
 		}
-		return null;		
+		return null;
 	}
-	
-	public Boolean nodeExists(Integer id, ObjektArt art) throws XmlRpcException {
-		ObjektNode n = getNode(id);
-		if (n!=null && n.getArt() == art) {
+
+	public Boolean nodeExists(Integer id, String art) throws XmlRpcException {
+		Node n = getNode(id);
+		if (n != null && n.getArt() == art) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public ObjektNode getRoot(ObjektArt art) throws XmlRpcException, IOException {
-		Vector att = (Vector) xmlRpcClient.execute("TreeHandler.getRoot", art.toString(), null, null, null);
-		return new ObjektNode(att);
-	}
-
-	public ObjektNode[] getChilds(ObjektNode objektNode) throws XmlRpcException, IOException {
-
-		Vector localVector = (Vector) xmlRpcClient.execute("TreeHandler.getChilds",
-				objektNode.getParentId(), objektNode.getArt().toString(), Boolean.valueOf(false), null, null);
-		ObjektNode[] arrayOfObjektNode = new ObjektNode[localVector.size()];
-		int i = 0;
-		Enumeration localEnumeration = localVector.elements();
-		while (localEnumeration.hasMoreElements()) {
-			ObjektNode localObjektNode = new ObjektNode((Vector) localEnumeration.nextElement());
-			arrayOfObjektNode[(i++)] = localObjektNode;
+	public Node getRoot(String art) throws XmlRpcException, IOException {
+		Vector att = (Vector) xmlRpcClient.execute("TreeHandler.getRoot", art, null, null, null);
+		if (att != null) {
+			try {
+				return (Node) ArrayConverter.toObject(Node.class, att.toArray());
+			} catch (ArraySerializationException e) {
+				throw new XmlRpcException(0, e.getMessage());
+			}
 		}
-		return arrayOfObjektNode;
+		return null;
 	}
 
-	public ObjektNode newNode(Integer id, String name, ObjektArt art)
-			throws XmlRpcException, IOException {
-		Vector att = (Vector) xmlRpcClient.execute("TreeHandler.newNode", art.toString(),
-				name, id);
-		return new ObjektNode(att);
+	public Node[] getChilds(Node objektNode) throws XmlRpcException, IOException {
+		Vector childs = (Vector) xmlRpcClient.execute("TreeHandler.getChilds", objektNode.getIdSuper(),
+				objektNode.getArt(), Boolean.valueOf(false), null, null);
+		Node[] out = new Node[childs.size()];
+		int i = 0;
+		Enumeration<Vector> localEnumeration = childs.elements();
+		while (localEnumeration.hasMoreElements()) {
+			try {
+				out[(i++)] = (Node) ArrayConverter.toObject(Node.class, localEnumeration.nextElement().toArray());
+			} catch (ArraySerializationException e) {
+				throw new XmlRpcException(0, e.getMessage());
+			}
+		}
+		return out;
 	}
 
-	public Boolean renameNode(ObjektNode node, String name) throws XmlRpcException {
-		return (Boolean) xmlRpcClient.execute("TreeHandler.renameNode", node.getId(),
-				node.getArt().toString(), name);
+	public Node newNode(Integer parentId, String name, String art) throws XmlRpcException, IOException {
+		Vector att = (Vector) xmlRpcClient.execute("TreeHandler.newNode", art, name, parentId);
+		Node n;
+		try {
+			n = (Node) ArrayConverter.toObject(Node.class, att.toArray());
+		} catch (ArraySerializationException e) {
+			throw new XmlRpcException(0, e.getMessage());
+		}
+		return n;
+
 	}
 
-	public void deleteNode(ObjektNode node) throws XmlRpcException {
+	public Node findOrCreateNode(Integer parentId, String name, String art) throws XmlRpcException {
+		Vector att = (Vector) xmlRpcClient.execute("TreeHandler.findOrSaveNode", art, name, parentId);
+		Node n;
+		try {
+			n = (Node) ArrayConverter.toObject(Node.class, att.toArray());
+		} catch (ArraySerializationException e) {
+			throw new XmlRpcException(0, e.getMessage());
+		}
+		return n;
+	}
+
+	public Boolean renameNode(Node node, String name) throws XmlRpcException {
+		return (Boolean) xmlRpcClient.execute("TreeHandler.renameNode", node.getId(), node.getArt(), name);
+	}
+
+	public void deleteNode(Node node) throws XmlRpcException {
 		xmlRpcClient.execute("TreeHandler.deleteNode", node.getId());
 	}
 
@@ -131,10 +162,26 @@ public class Client {
 		return (String) xmlRpcClient.execute("TreeHandler.getNodePath", id);
 	}
 
-	public void setNodeReference(Integer vonId, Integer aufId, ObjektArt art)
-			throws XmlRpcException {
-		xmlRpcClient.execute("ObjektHandler.createReference", vonId, aufId,
-				art.toString());
+	public void setNodeReference(Integer vonId, Integer aufId, String art) throws XmlRpcException {
+		xmlRpcClient.execute("ObjektHandler.createReference", vonId, aufId, art);
+	}
+
+	public <T extends Objekt> T getNodeObjekt(Node node, Class<T> classz) throws XmlRpcException {
+
+		Vector<Object> o = (Vector<Object>) xmlRpcClient.execute("ObjektHandler.getObjekt", node.getId(),
+				node.getArt().toString());
+		try {
+			return (T) ArrayConverter.toObject(classz, o.toArray());
+		} catch (ArraySerializationException e) {
+			throw new XmlRpcException(0, e.getMessage());
+		}
+	}
+	
+			
+	public <T extends Objekt> void updateNodeObjekt(T o) throws XmlRpcException {		
+		// Only a subset of attributes are used by the updateObjekt handler !
+		// This is is a poor asymmetric design ;.(
+		xmlRpcClient.execute("ObjektHandler.updateObjekt", o.getId(), o.getArt(), o.updateVector());
 	}
 
 }

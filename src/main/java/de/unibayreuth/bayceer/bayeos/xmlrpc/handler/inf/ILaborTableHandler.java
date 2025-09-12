@@ -20,6 +20,7 @@ import org.apache.xmlrpc.XmlRpcException;
  * 
  * 
  *  @author oliver
+ *  @deprecated
  *  
  */
 public interface ILaborTableHandler {
